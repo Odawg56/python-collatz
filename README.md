@@ -1,7 +1,7 @@
 # python-collatz
 Tool to render interpretations of the Collatz Conjecture using Python Turtle.
 
-# Explaination of the Conjecture {#explaination}
+# Explaination of the Conjecture
 
 To understand how the program works, you must first know *what* the Collatz Conjecture is. If you don't want to read, Veritasium has a great video here: https://youtu.be/094y1Z2wpJg
 
@@ -13,7 +13,7 @@ For starters, the conjecture is a rule that - when applied continuously to any p
 If the conjecture were to be applied to say, 6, the pattern would be as follows: 6,3,10,5,16,8,4,2,1,4,2,1,4,2,1...
 You will note that it ends up in the loop, 4,2,1,4,2,1. In the collatz python file, `collatz.py`, this rule is applied in a function `applyRule`.
 
-# Prerequisites {#prerequisites}
+# Prerequisites
 
 The applications uses both Kivy and PIL, which are not shipped with python. Instructions for installing kivy can be found at https://kivy.org/doc/stable/gettingstarted/installation.html, and PIL can be installed using pip: 
 ```pip install Pillow```
@@ -22,9 +22,9 @@ Other than that, Python will obviously need to be installed as well, which can b
 
 **Note: There is no formal support for any OS other than Windows at this time, but you are welcome to try**
 
-# Functions of the app {#functions}
+# Functions of the app
 
-As discussed in [Explaination of the Conjecture](#explaination), any positive integer will come to equal one after the rule is applied. The main loop of the app tests values in a specified range (default 1-200), and plots them using Python Turtle. This is achieved by applying the rule to the current number, and turning a set amount left or right based on if the result is even or odd. The turtle will then move forward and repeat this process until reaching 1. Once the 'strand' has reached 1, the turtle goes back to the starting position and draws the next value in a strand.
+As discussed in [Explaination of the Conjecture](#explaination-of-the-conjecture), any positive integer will come to equal one after the rule is applied. The main loop of the app tests values in a specified range (default 1-200), and plots them using Python Turtle. This is achieved by applying the rule to the current number, and turning a set amount left or right based on if the result is even or odd. The turtle will then move forward and repeat this process until reaching 1. Once the 'strand' has reached 1, the turtle goes back to the starting position and draws the next value in a strand.
 
 ##Colour Calculation
 
