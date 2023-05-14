@@ -17,6 +17,7 @@ You will note that it ends up in the loop, 4,2,1,4,2,1. In the collatz python fi
 
 The applications uses both Kivy and PIL, which are not shipped with python. Instructions for installing kivy can be found at https://kivy.org/doc/stable/gettingstarted/installation.html, and PIL can be installed using pip: 
 ```pip install Pillow```
+
 Other than that, Python will obviously need to be installed as well, which can be done through the Windows Store or terminal.
 
 **Note: There is no formal support for any OS other than Windows at this time, but you are welcome to try**
