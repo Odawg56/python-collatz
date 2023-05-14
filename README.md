@@ -7,12 +7,11 @@ To understand how the program works, you must first know *what* the Collatz Conj
 
 For starters, the conjecture is a rule that - when applied continuously to any positive integer - the number will come to equal 1, then loop. The rules are as follows:
 
-If the number is even, divide by two (making it odd).
-
-If the number is odd, multiply my three and add one (making it even again)
+- If the number is even, divide by two (making it odd).
+- If the number is odd, multiply my three and add one (making it even again)
 
 If the conjecture were to be applied to say, 6, the pattern would be as follows: 6,3,10,5,16,8,4,2,1,4,2,1,4,2,1...
-You will note that it ends up in the loop, 4,2,1,4,2,1.
+You will note that it ends up in the loop, 4,2,1,4,2,1. In the collatz python file, `collatz.py`, this rule is applied in a function `applyRule`.
 
 # Prerequisites {#prerequisites}
 
@@ -28,4 +27,4 @@ As discussed in [Explaination of the Conjecture](#explaination), any positive in
 
 ##Colour Calculation
 
-If you've seen the app work, you'll note that there is a spectrum of colours that render in the strands, composed of RGB values. Currently, Red increases and Blue decreases through values tested, and Green increases along the length of a strand, with the maximum value in the whole application having the maximum green value of 255. The maximum value is hence needed prior to rendering the strands, so it is calculated beforehand in a function `calcMaxValue'
+If you've seen the app work, you'll note that there is a spectrum of colours that render in the strands, composed of RGB values. Currently, Red increases and Blue decreases through values tested, and Green increases along the length of a strand, with the maximum value in the whole application having the maximum green value of 255. The maximum value is hence needed prior to rendering the strands, so it is calculated beforehand in a function `calcMaxGreen`.
