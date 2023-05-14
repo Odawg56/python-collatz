@@ -26,6 +26,19 @@ Other than that, Python will obviously need to be installed as well, which can b
 
 As discussed in [Explaination of the Conjecture](#explaination-of-the-conjecture), any positive integer will come to equal one after the rule is applied. The main loop of the app tests values in a specified range (default 1-200), and plots them using Python Turtle. This is achieved by applying the rule to the current number, and turning a set amount left or right based on if the result is even or odd. The turtle will then move forward and repeat this process until reaching 1. Once the 'strand' has reached 1, the turtle goes back to the starting position and draws the next value in a strand.
 
-##Colour Calculation
+## Colour Calculation
 
 If you've seen the app work, you'll note that there is a spectrum of colours that render in the strands, composed of RGB values. Currently, Red increases and Blue decreases through values tested, and Green increases along the length of a strand, with the maximum value in the whole application having the maximum green value of 255. The maximum value is hence needed prior to rendering the strands, so it is calculated beforehand in a function `calcMaxGreen`.
+
+## File Structure
+
+The four main files involved in the app are:
+
+- `main.py`, which links most parts together and controls interface functionality
+- `my.kv`, which sets out the Profile Selection Interface
+- `collatzDB.py`, which stores functions for interfacing with the profiles database, `profiles.db`
+- `profiles.db`, which stores the profiles data
+
+There are also some reference files, such as `reference.py`, `reference.kv` and `collatz copy.py` which were effectively used to jog my memory in coding python. These will likely get removed later.
+
+
