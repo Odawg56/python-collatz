@@ -1,0 +1,262 @@
+#:kivy 1.0.9
+
+<TestLabel@Label>:
+    text: "Imaginary Profile Here"
+    color: 0,0,0,1
+    font_size: 32
+<Opt@SpinnerOption>:
+    background_normal:''
+    color: 0,0,0,1
+    background_color: 0.9,0.9,0.9,1
+    canvas.before:
+        Color:
+            rgba: .5, .5, .5, 0.7
+        Line:
+            width: 1.5
+            rectangle: self.x, self.y, self.width, self.height
+<Sp@DropDown>:
+    background_normal:''
+    color: 0,0,0,1
+    background_color: 0.85,0.85,0.85,1
+<mainScreen>:
+    name: "mainScreen"
+    buttonColor: 0.8,0.8,0.8,1
+    selectedProfile: ''
+    searchBox: searchBox
+    profile_list: profile_list
+    profile_name: profile_name
+    even_angle: even_angle
+    odd_angle: odd_angle
+    stroke_length: stroke_length
+    x_start: x_start
+    y_start: y_start
+    pen_size: pen_size
+    Widget:
+        background_color: 0.96, 0.96, 0.96, 1
+        id: mainWidget
+        canvas.before:
+            Color:
+                rgba: self.background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            id: mainHolder
+            size: root.width-30,root.height-30
+            pos: 15,15
+            spacing: 15
+            BoxLayout: #left side
+                id: left
+                orientation: 'vertical'
+                size_hint: 0.5, 1
+                spacing: 5
+                BoxLayout:
+                    size_hint: 1,0.1
+                    spacing: 5
+                    TextInput:
+                        text: ""
+                        id: searchBox
+                        font_size: 32
+                        size_hint: 0.8,1
+                        multiline: False
+                        on_text_validate: root.searchConfirm()
+                    Button:
+                        text: 'Go'
+                        on_press: root.searchConfirm()
+                        size_hint: 0.2,1
+                ScrollView:
+                    do_scroll_x: False
+                    bar_width: 5
+                    size_hint: 1,0.9
+                    GridLayout:
+                        size_hint: 1, None
+                        cols:1
+                        spacing: 5
+                        id: profile_list
+                        row_default_height: 32
+                        height: self.minimum_height
+            BoxLayout: #right side of setup
+                id: right
+                size_hint: 0.5, 1
+                orientation: 'vertical'
+                spacing: 10
+                canvas:
+                    Color:
+                        rgba: 0,0,0,1
+                    Line:
+                        width: 1.5
+                        points: (right.pos[0],(right.height*.5)+((len(right.children)*right.spacing)/2),right.pos[0]+right.width,(right.height*.5)+((len(right.children)*right.spacing)/2))
+                        cap: "none"
+                    Line:
+                        width: 1.5
+                        points: (left.pos[0]+left.width+((mainHolder.spacing/2)),left.height+mainHolder.pos[1],left.pos[0]+left.width+(mainHolder.spacing/2),mainHolder.pos[0])
+                        cap: "none"
+                GridLayout: #details of profile
+                    size_hint: 1, 0.5
+                    cols: 2
+                    spacing: 3
+                    BoxLayout:
+                        Label:
+                            text: "Even Angle"
+                            font_size: 24
+                            color: 0,0,0,1
+                        TextInput:
+                            id: even_angle
+                            font_size: 24
+                            multiline: False
+                    BoxLayout:
+                        Label:
+                            text: "Odd Angle"
+                            font_size: 24
+                            font_size: 24
+                            color: 0,0,0,1
+                        TextInput:
+                            id: odd_angle
+                            font_size: 24
+                            multiline: False
+                    BoxLayout:
+                        Label:
+                            text: "Stroke Length"
+                            font_size: 24
+                            color: 0,0,0,1
+                        TextInput:
+                            id: stroke_length
+                            font_size: 24
+                            multiline: False
+                    BoxLayout:
+                        Label:
+                            text: "X Start"
+                            font_size: 24
+                            color: 0,0,0,1
+                        TextInput:
+                            id: x_start
+                            font_size: 24
+                            multiline: False
+                    BoxLayout:
+                        Label:
+                            text: "Y Start"
+                            font_size: 24
+                            color: 0,0,0,1
+                        TextInput:
+                            id: y_start
+                            font_size: 24
+                            multiline: False
+                    BoxLayout:
+                        Label:
+                            text: "Pen Size"
+                            font_size: 24
+                            color: 0,0,0,1
+                        TextInput:
+                            id: pen_size
+                            font_size: 24
+                            multiline: False
+                BoxLayout: #holding profile name and clear button
+                    size_hint: 1, 0.096
+                    spacing: 5
+                    TextInput:
+                        id: profile_name
+                        size_hint: 0.7, 1
+                        text: 'Profile Name'
+                        font_size: 36
+                        multiline: False
+                    Button:
+                        size_hint: 0.3, 1
+                        text: "Clear"
+                        background_normal: ''
+                        color: 0,0,0,1
+                        background_color: 1,.1,.25,1
+                        on_press: root.clearFields()
+                BoxLayout: #holding save option buttons
+                    size_hint: 1, 0.096
+                    spacing: 5
+                    Button:
+                        text: "Save As New"
+                        background_color: .1,.4,1,1
+                        background_normal: ''
+                        color: 0,0,0,1
+                        on_press: root.SaveAsNew()
+                    Button:
+                        text: "Save (Update)"
+                        background_color: .1,1,.4,1
+                        background_normal: ''
+                        color: 0,0,0,1
+                        on_press: root.SaveUpdate()
+                BoxLayout:
+                    size_hint: 1, 0.288
+                    spacing: 5
+                    GridLayout:
+                        cols: 1
+                        size_hint: 0.5,1
+                        spacing: 3
+                        BoxLayout:
+                            size_hint: 1,0.6/3
+                            Label:
+                                text: "3D View:"
+                                color: 0,0,0,1
+                            Spinner:
+                                id: perspective
+                                text: "Perspective..."
+                                values: ['Default','Increasing','Decreasing','Large Pensize']
+                                on_text: root.perspective_clicked(perspective.text)
+                                background_normal:''
+                                color: 0,0,0,1
+                                background_color: 0.83,0.83,0.83,1
+                                option_cls: 'Opt'
+                                text_autoupdate: True
+                        BoxLayout:
+                            size_hint: 1,0.6/3
+                            Label:
+                                text: "BG Colour:"
+                                color: 0,0,0,1
+                            Spinner:
+                                id: bgColor
+                                text: "BG Colour..."
+                                values: ['Black','White','Red','Blue','Green','Yellow','Orange','Pink']
+                                on_text: root.bgColor_clicked(bgColor.text)
+                                background_normal:''
+                                color: 0,0,0,1
+                                background_color: 0.83,0.83,0.83,1
+                                option_cls: 'Opt'
+                                text_autoupdate: True
+                        BoxLayout:
+                            size_hint: 1,0.6/3
+                            Label:
+                                text: 'Additive Graph'
+                                color: 0,0,0,1
+                                size_hint: 0.65,1
+                            CheckBox:
+                                id: additiveBox
+                                color: 0.2,1,0.2,1
+                                background_color: 1,0,0,1
+                                size_hint: 0.35,1
+                                active: True
+                        BoxLayout:
+                            size_hint: 1,0.4
+                            spacing: 3
+                            orientation: 'vertical'
+                            Label:
+                                size_hint: 1, 0.5
+                                text: 'Range of Values:'
+                                color: 0,0,0,1
+                            BoxLayout: 
+                                size_hint: 1, 0.5
+                                TextInput:
+                                    text: '1'
+                                    font_size: 20
+                                    id: start_i
+                                Label:
+                                    size_hint: 0.25,1
+                                    text: 'to'
+                                    font_size: 18
+                                    color: 0,0,0,1
+                                TextInput:
+                                    text: '200'
+                                    font_size: 20
+                                    id: finish_i
+                    Button:
+                        text: 'Start!'
+                        background_normal: ''
+                        background_color: .1,1,.2,1
+                        color: 0,0,0,1
+                        font_size: 72
+                        on_press: root.startCollatz()

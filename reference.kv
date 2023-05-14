@@ -1,0 +1,585 @@
+#:kivy 1.0.9
+<login>: #login
+    name: "login"
+    username: username
+    password: password
+    buttonColor: 0.6,1,1,1
+    orangeColor: 1, 0.48, 0, 0.43
+    Widget:
+        background_color: 0.98, 0.98, 0.98, 1
+        id: mainWidget
+        canvas.before:
+            Color:
+                rgba: self.background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            orientation: 'vertical'
+            size: root.width-30,root.height-30
+            pos: 15,15
+            spacing: 15
+            canvas:
+                Color:
+                    rgba: 0.8,0.8,0.8,1
+                Line:
+                    width: 2
+                    points: (15,(root.height*0.88),root.width-15,(root.height*0.88))
+                    cap: "none"
+            Label: #title
+                text:"Login"
+                font_size: 48
+                size_hint: 1, 0.1 
+                color: 0,0,0,1
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: 0.75, 0.75
+                halign:"center"
+                pos_hint: {'center_x':0.5, 'y':0}
+                Label:
+                    text: "Username"
+                    font_size: 24
+                    size_hint: 1, 0.2 
+                    color: 0,0,0,1
+                    halign: "left"
+                TextInput:
+                    id: username
+                    multiline: False
+                    size_hint: 1,0.1
+                    color: 0,0,0,1
+                    background_color: root.buttonColor
+                    background_normal: 'normal2.png'
+                    background_active: "normal2.png"
+                    border: (15,15,15,15)
+                Label:
+                    text: "Password"
+                    font_size: 24
+                    size_hint: 1, 0.2 
+                    color: 0,0,0,1
+                    halign: "left"
+                TextInput:
+                    id: password
+                    multiline: False
+                    password: True #this and next two lines set the password dots (●●●●)
+                    font_name: 'Arial' 
+                    password_mask: u'\u25CF'
+                    size_hint: 1,0.1
+                    color: 0,0,0,1
+                    background_color: root.buttonColor
+                    background_normal: 'normal2.png'
+                    background_active: "normal2.png"
+                    border: (15,15,15,15)
+                Button:
+                    text: "No account? Create one!"
+                    italic: True
+                    color: 0,0,0,1
+                    size_hint: 1,0.1
+                    background_color: 0.5,1,0.5,0
+                    background_normal: ''
+                    on_press:
+                        root.manager.current = "createAccount"
+                        root.manager.transition.direction = "right"
+            Button:
+                text:"Login >"
+                color: 0,0,0,1
+                size_hint: 0.8,0.15
+                halign: "right"
+                background_color: root.buttonColor
+                background_normal: 'normal.png'
+                background_down: "down.png"
+                border: (30,30,30,30)
+                on_press: root.loginPressed()
+
+<createAccount>: #create account
+    name: "createAccount"
+    username: username
+    password: password
+    buttonColor: 0.6,1,1,1
+    orangeColor: 1, 0.48, 0, 0.43
+    Widget:
+        background_color: 0.98, 0.98, 0.98, 1
+        id: mainWidget
+        canvas.before:
+            Color:
+                rgba: self.background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            orientation: 'vertical'
+            size: root.width-30,root.height-30
+            pos: 15,15
+            spacing: 15
+            canvas:
+                Color:
+                    rgba: 0.8,0.8,0.8,1
+                Line:
+                    width: 2
+                    points: (15,(root.height*0.88),root.width-15,(root.height*0.88))
+                    cap: "none"
+            Label: #title
+                text:"Create Account"
+                font_size: 48
+                size_hint: 1, 0.1 
+                color: 0,0,0,1
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: 0.75, 0.75
+                halign:"center"
+                pos_hint: {'center_x':0.5, 'y':0}
+                Label:
+                    text: "Username"
+                    font_size: 24
+                    size_hint: 1, 0.2 
+                    color: 0,0,0,1
+                TextInput:
+                    id: username
+                    multiline: False
+                    size_hint: 1,0.1
+                    halign: "center"
+                    color: 0,0,0,1
+                    background_color: root.buttonColor
+                    background_normal: 'normal.png'
+                    background_active: "normal.png"
+                    border: (30,30,30,30)
+                Label:
+                    text: "Password"
+                    font_size: 24
+                    size_hint: 1, 0.2 
+                    color: 0,0,0,1
+                TextInput:
+                    id: password
+                    multiline: False
+                    size_hint: 1,0.1
+                    halign: "center"
+                    color: 0,0,0,1
+                    background_color: root.buttonColor
+                    background_normal: 'normal.png'
+                    background_active: "normal.png"
+                    border: (30,30,30,30)
+                Button:
+                    text: "Already have an account? Login"
+                    italic: True
+                    color: 0,0,0,1
+                    size_hint: 1,0.1
+                    background_color: 0.5,1,0.5,0
+                    background_normal: ''
+                    on_press:
+                        root.manager.current = "login"
+                        root.manager.transition.direction = "left"
+            Button:
+                text:"Create >"
+                color: 0,0,0,1
+                size_hint: 0.8,0.15
+                halign: "right"
+                background_color: root.buttonColor
+                background_normal: 'normal.png'
+                background_down: "down.png"
+                border: (30,30,30,30)
+                on_press:
+                    root.createAccPressed()
+
+<mainScreen>: #main screen
+    name: "mainScreen"
+    activeUser: None
+    buttonColor: 0.6,1,1,1
+    orangeColor: 1, 0.48, 0, 0.43
+    Widget:
+        background_color: 0.92, 0.92, 0.92, 1
+        id: mainWidget
+        canvas.before:
+            Color:
+                rgba: self.background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            orientation: 'vertical'
+            size: root.width-30,root.height-30
+            pos: 15,15
+            spacing: 15
+            id: mainBoxLayout
+            canvas:
+                Color:
+                    rgba: 0.8,0.8,0.8,1
+                Line:
+                    width: 2
+                    points: (15,(root.height*0.88),root.width-15,(root.height*0.88))
+                    cap: "none"
+            Label:
+                text: "Park Finder QLD"
+                font_size: 40
+                color: 0,0,0,1
+                size_hint: 1, 0.17
+            Image:
+                source: "park.png"
+                size_hint: 1, 0.5
+            Button:
+                text:"Search"
+                font_size: 28
+                color: 0,0,0,1
+                background_color: root.buttonColor
+                background_normal: 'normal.png'
+                background_down: "down.png"
+                border: (30,30,30,30)
+                size_hint: 1, 0.18
+                on_press:
+                    root.manager.current = "search"
+                    root.manager.transition.direction = "left"
+            Button:
+                text:"Saved"
+                font_size: 28
+                color: 0,0,0,1
+                background_color: root.buttonColor
+                background_normal: 'normal.png'
+                background_down: "down.png"
+                border: (30,30,30,30)
+                size_hint: 1, 0.18
+                on_press:
+                    root.manager.current = "saved"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: "Logout"
+                font_size: 28
+                color: 0,0,0,1
+                background_color: 1.00,0.20,0.20, 1
+                background_normal: 'normal.png'
+                background_down: "down.png"
+                border: (30,30,30,30)
+                size_hint: 1, 0.18
+                on_press: root.logoutPressed()
+<saved>:
+    name: "saved"
+    buttonColor: 0.8,0.8,0.8,1
+    orangeColor: 1, 0.48, 0, 0.43
+    activeID: ""
+    backLoc:"mainScreen"
+    field: field
+    Widget:
+        background_color: 0.92, 0.92, 0.92, 1
+        id: mainWidget
+        canvas.before:
+            Color:
+                rgba: self.background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            orientation: 'vertical'
+            size: root.width-30,root.height-30
+            pos: 15,15
+            spacing: 15
+            canvas:
+                Color:
+                    rgba: 0,0,0,1
+                Line:
+                    width: 2
+                    points: (15,(root.height*0.865),root.width-15,(root.height*0.865))
+                    cap: "none"
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint: 1, 0.1
+                Button:
+                    text:"<"
+                    font_size: 30
+                    background_color: 1,0.2,0.2,1
+                    background_normal: 'normal.png'
+                    background_down: "down.png"
+                    border: (30,30,30,30)
+                    size_hint: 0.18, 1
+                    on_press: root.goBack()
+                Label:
+                    text: "Saved"
+                    font_size: 28
+                    color: 0,0,0,1
+            ScrollView:
+                do_scroll_x: False
+                bar_width: 4
+                size_hint: 1,0.78
+                GridLayout:
+                    size_hint: 1, None
+                    cols:1
+                    spacing:10
+                    id: field
+                    row_default_height: 32
+                    height: self.minimum_height
+<search>:
+    name: "search"
+    buttonColor: 0.8,0.8,0.8,1
+    orangeColor: 1, 0.48, 0, 0.43
+    activeID: 0
+    backLoc:"mainScreen"
+    searchField: searchField
+    field: field
+    Widget:
+        background_color: 0.92, 0.92, 0.92, 1
+        id: mainWidget
+        canvas.before:
+            Color:
+                rgba: self.background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            orientation: 'vertical'
+            size: root.width-30,root.height-30
+            pos: 15,15
+            spacing: 15
+            canvas:
+                Color:
+                    rgba: 0,0,0,1
+                Line:
+                    width: 2
+                    points: (15,(root.height*0.89),root.width-15,(root.height*0.89))
+                    cap: "none"
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint: 1, 0.09
+                Button:
+                    text:"<"
+                    font_size: 30
+                    background_color: 1,0.2,0.2,1
+                    background_normal: 'normal2.png'
+                    background_down: "down2.png"
+                    border: (15,15,15,15)
+                    size_hint: 0.18, 1
+                    on_press: root.goBack()
+                Label:
+                    text: "Search"
+                    font_size: 28
+                    color: 0,0,0,1
+            BoxLayout:
+                orientation:'horizontal'
+                size_hint: 1, 0.08
+                spacing: 10
+                TextInput:
+                    id: searchField
+                    multiline: False
+                    background_color: root.buttonColor
+                    background_normal: 'normal.png'
+                    background_active: "normal.png"
+                    border: (30,30,30,30)
+                Button:
+                    text: "↵"
+                    font_name: 'Symbola'
+                    font_size: 30
+                    size_hint: 0.15,1
+                    color: 0,0,0,1
+                    on_press: root.submit_search()
+                    background_color: root.buttonColor
+                    background_normal: 'normal2.png'
+                    background_down: "down2.png"
+                    border: (15,15,15,15)
+            ScrollView:
+                so_scroll_x: False
+                bar_width: 4
+                size_hint: 1,0.83
+                GridLayout:
+                    size_hint: 1, None
+                    cols:1
+                    spacing:10
+                    id: field
+                    row_default_height: 32
+                    height: self.minimum_height
+<details>:
+    name: "details"
+    buttonColor: 0.8,0.8,0.8,1
+    orangeColor: 1, 0.48, 0, 0.43
+    activeID: ""
+    backLoc:""
+    title: title
+    saveState: False
+    saveButton: saveButton
+    lat: lat
+    long: long
+    featureField1: featureField1
+    featureField2: featureField2
+    Widget:
+        background_color: 0.92, 0.92, 0.92, 1
+        id: mainWidget
+        canvas.before:
+            Color:
+                rgba: self.background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            orientation: 'vertical'
+            size: root.width-30,root.height-30
+            pos: 15,15
+            spacing: 15
+            canvas:
+                Color:
+                    rgba: 0,0,0,1
+                Line:
+                    width: 2
+                    points: (15,(root.height*0.89),root.width-15,(root.height*0.89))
+                    cap: "none"
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint: 1, 0.12
+                Button:
+                    text:"<"
+                    font_size: 30
+                    background_color: 1,0.2,0.2,1
+                    background_normal: 'normal.png'
+                    background_down: "down.png"
+                    border: (30,30,30,30)
+                    size_hint: 0.18, 1
+                    on_press: root.goBack()
+                Label:
+                    id: title
+                    text: "Park Details"
+                    font_size: 28
+                    color: 0,0,0,1
+                    size_hint: 0.82, 1
+            GridLayout:
+                cols:2
+                size_hint: 1, 0.6
+                BoxLayout:
+                    id: featureField1
+                    orientation: 'vertical'
+                BoxLayout:
+                    id: featureField2
+                    orientation: 'vertical'
+            Label:
+                id: long
+                text: "Longitude: 000000000"
+                color: 0,0,0,1
+                font_size: 20
+                size_hint: 1, 0.14
+            Label:
+                id: lat
+                text: "Latitude: 000000000"
+                color: 0,0,0,1
+                font_size: 20
+                size_hint: 1, 0.14
+            Button:
+                id: mapsButton
+                text: "Location on Google Maps"
+                on_release: root.goMaps()
+                background_color: 0.10,0.85,1.00
+                background_normal: 'normal.png'
+                background_down: "down.png"
+                border: (30,30,30,30)
+                size_hint: 1, 0.12
+            Button:
+                id: saveButton
+                text: "Save <3"
+                font_size: 28
+                background_color: 0.2,1,0.2,1
+                background_normal: 'normal.png'
+                background_down: "down.png"
+                border: (30,30,30,30)
+                on_press: root.savePressed()
+                size_hint: 0.8, 0.12
+<AdminGrid@GridLayout>:
+    size_hint: 1, None
+    cols:1
+    spacing:10
+    row_default_height: 32
+    height: self.minimum_height
+<adminView>:
+    name: "adminView"
+    buttonColor: 0.6,1,1,1
+    orangeColor: 1, 0.48, 0, 0.43
+    backLoc: 'login'
+    all: all
+    users: users
+    parks: parks
+    features: features
+    savedParks: savedParks
+    Widget:
+        background_color: 0.92, 0.92, 0.92, 1
+        id: mainWidget
+        canvas.before:
+            Color:
+                rgba: self.background_color
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            orientation:'vertical'
+            size: root.width-20, root.height-20
+            pos: 10,10
+            BoxLayout:
+                size_hint: 1,0.12 #banner/header
+                spacing: 20
+                padding: 10
+                background_color: 0.89, 0.89, 0.89, 1
+                Button:
+                    text: "<"
+                    font_size: 30
+                    on_press: root.goBack()
+                    background_color: 1,0.2,0.2,1
+                    background_normal: 'normal2.png'
+                    background_down: "down2.png"
+                    border: (15,15,15,15)
+                    size_hint: 0.15,1
+                Label:
+                    id: title
+                    text: "Data View"
+                    color: 0,0,0,1
+                    font_size: 40
+                    size_hint: 0.7,1
+                Button:
+                    text: "Make Backup"
+                    font_size: 30
+                    color: 0,0,0,1
+                    on_press: root.backup()
+                    background_color: root.buttonColor
+                    background_normal: 'normal2.png'
+                    background_down: "down2.png"
+                    border: (15,15,15,15)
+                    size_hint: 0.15,1
+            TabbedPanel:
+                do_default_tab: False
+                size_hint: 1,0.88
+                background_color: 0.89,0.89,0.89,1
+                border: (0,0,0,0)
+                background_image: ''
+                TabbedPanelItem:
+                    text: "All"
+                    ScrollView:
+                        do_scroll_x: False
+                        bar_width: 4
+                        size_hint: 1,1
+                        AdminGrid:
+                            id: all
+                TabbedPanelItem:
+                    text: "Users"
+                    ScrollView:
+                        do_scroll_x: False
+                        bar_width: 4
+                        size_hint: 1,1
+                        AdminGrid:
+                            id: users
+                TabbedPanelItem:
+                    text: "Parks"
+                    ScrollView:
+                        do_scroll_x: False
+                        bar_width: 4
+                        size_hint: 1,1
+                        AdminGrid:
+                            id: parks
+                TabbedPanelItem:
+                    text: "Features"
+                    ScrollView:
+                        do_scroll_x: False
+                        bar_width: 4
+                        size_hint: 1,1
+                        AdminGrid:
+                            id: features
+                            Label:
+                                id: notice
+                                text: "this section has been disabled, as Kivy cannot handle 108,000+ widgets"
+                                color: 0,0,0,1
+                                font_size: 20
+                TabbedPanelItem:
+                    text: "Saved Parks"
+                    ScrollView:
+                        do_scroll_x: False
+                        bar_width: 4
+                        size_hint: 1,1
+                        AdminGrid:
+                            id: savedParks

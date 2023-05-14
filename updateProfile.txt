@@ -1,0 +1,1 @@
+UPDATE profiles SET profile_name='{1}', even_angle={2}, odd_angle={3}, stroke_length={4}, x_start={5}, y_start={6}, pen_size={7} WHERE profile_name IS '{0}'

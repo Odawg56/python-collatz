@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS "profiles" (
+    profile_name TEXT PRIMARY KEY,
+    even_angle FLOAT NOT NULL,
+    odd_angle FLOAT NOT NULL,
+    stroke_length INTEGER NOT NULL,
+    x_start INTEGER NOT NULL,
+    y_start INTEGER NOT NULL,
+    pen_size INTEGER NOT NULL
+)

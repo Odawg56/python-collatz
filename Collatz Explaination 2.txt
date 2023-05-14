@@ -1,0 +1,8 @@
+EXPLAINATION OF THE COLLATZ CONJECTURE:
+
+without fail, if the following rule is continuously applied, n will come to equal 1,
+then loop - 4,2,1,4,2,1,4,2,1...
+
+if n is even, divide by 2
+
+if n is odd, multiply by 3 and add 1

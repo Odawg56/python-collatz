@@ -1,0 +1,1 @@
+INSERT INTO profiles (profile_name, even_angle, odd_angle, stroke_length, x_start, y_start, pen_size) VALUES ('{0}',{1},{2},{3},{4},{5},{6})
